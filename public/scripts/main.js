@@ -1,38 +1,19 @@
-    var state = true;     
+var renderer;
 $(document).ready(function () {
     var resx = 800;
     var resy =  600;
-        
-    // create an new instance of a pixi stage
-    var container = new PIXI.Container();
     var loader = PIXI.loader;
-             
-    // create a renderer instance.
-    var renderer = PIXI.autoDetectRenderer(resx, resy,{backgroundColor : 0x1099bb});
-    state = true;             
-    container.interactive = true;
+    var gameScene = new GameScene(resx, resy);
     
-    //this we need to keep
-    container.hitArea = new PIXI.Rectangle(0, 0, resx, resy);
-
-
-    // add the renderer view element to the DOM
-    //$('body').append(renderer.view);
-    document.getElementById("game").appendChild(renderer.view); 
-    
-    var heroLocation = 'pics/Hero.png';
+    renderer = PIXI.autoDetectRenderer(resx, resy,{backgroundColor : 0x1099bb});
     
     loader
-        .add(heroLocation)
-        .load(animate);   
-        
-        
-
+        .add('pics/Hero.png')
+        .add('pics/Antagonist.png')
+        .load(start);
     
-    var player = new playerObj(heroLocation, 0.5,0.5,100,100);
-    player.addSprite(container);
-    player.setPosition(100,500);
     
+<<<<<<< HEAD
 
 
     var enemyimg = 'pics/Antagonist.png';
@@ -51,30 +32,20 @@ $(document).ready(function () {
         player.Move(event.data.global.x, event.data.global.y);
         playWoosh(player.soundeffectid);
     };
+=======
     
-            
-    function animate() {
-        requestAnimationFrame( animate );
-        
-        if(enemy.exists === true)
-        {
-            if(enemy.Fly(player.obj.position.x, player.obj.position.y))
-            {
-                playGrunt();
-            }
-            
-        }
-        
-        //state();
-        // just for fun, let's rotate mr rabbit a little
-        if(player.exists === true){
-            player.Animate();
-        }else{
-            state = false;
-        }
-  
-        if(state === true){
-            renderer.render(container);
-        }
+    document.getElementById("game").appendChild(renderer.view); 
+   
+    
+    function start(){
+        gameScene.startGame();
+        animate();
+    }
+>>>>>>> a75098d3797709cf37b04e4f13e59a6fad2e0747
+    
+    function animate(){
+         requestAnimationFrame( animate );
+         gameScene.Animate();
+         renderer.render(gameScene.obj);
     }
 });
