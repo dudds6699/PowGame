@@ -34,11 +34,9 @@ $(document).ready(function () {
     player.setPosition(100,500);
     
 
-    var check = 'pics/bunny.png';
+
     var enemyimg = 'pics/enemy.png';
-    var test = new playerObj(check, 0.5,0.5,400,300);
-    test.addSprite(container);
-    test.setPosition(100,500);
+
     var enemy = new enemyObj(enemyimg, 0.6,0.6,400,300);
     enemy.addSprite(container);
     enemy.setPosition(400,300);
@@ -58,7 +56,7 @@ $(document).ready(function () {
         
         if(enemy.exists === true)
         {
-            enemy.Fly(test.obj.position.x, test.obj.position.y);
+            enemy.Fly(player.obj.position.x, player.obj.position.y);
             
         }
         
