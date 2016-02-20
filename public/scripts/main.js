@@ -35,7 +35,7 @@ $(document).ready(function () {
     
 
 
-    var enemyimg = 'pics/enemy.png';
+    var enemyimg = 'pics/Antagonist.png';
 
     var enemy = new enemyObj(enemyimg, 0.6,0.6,400,300);
     enemy.addSprite(container);
