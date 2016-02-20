@@ -49,5 +49,7 @@ gameObj.prototype.Animate = function(){
 };
 
 function test(){
+    var snd = new Audio("audio/explosion.mp3"); // buffers automatically when created
+	snd.play();
     this.visible = false;
 }
