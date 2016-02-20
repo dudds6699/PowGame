@@ -44,12 +44,12 @@ $(document).ready(function () {
     container.mousedown = function (event) 
     {
         player.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
-        playWoosh();
+        playWoosh(player.soundeffectid);
     };
     
     container.tap  = function(event){
         player.Move(event.data.global.x, event.data.global.y);
-        playWoosh();
+        playWoosh(player.soundeffectid);
     };
     
             
