@@ -1,6 +1,15 @@
 function enemyObj(){
-    this.texture = PIXI.Texture.fromImage('pics/enemy.png');
-    this.obj = new PIXI.Sprite(this.texture);
+    var baseTexture = new PIXI.BaseTexture.fromImage(tex);
+    this.iddleAnimation = [];
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(0, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(64, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(128, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(192, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(256, 0, 64, 64)));
+    this.idle = 0;
+    
+    
+    this.obj = new PIXI.Sprite(this.iddleAnimation[this.idle]);
     
     //sprites anchor point
     this.obj.anchor.x = 0.5;
@@ -18,8 +27,17 @@ function enemyObj(){
 }
 
 function enemyObj(tex, anchorx, anchory, posx, posy){
-    this.texture =  PIXI.Texture.fromImage(tex);
-    this.obj = new PIXI.Sprite(this.texture);
+    var baseTexture = new PIXI.BaseTexture.fromImage(tex);
+    this.iddleAnimation = [];
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(0, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(64, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(128, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(192, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(256, 0, 64, 64)));
+    this.idle = 0;
+    
+    
+    this.obj = new PIXI.Sprite(this.iddleAnimation[this.idle]);
     
     //sprites anchor point
     this.obj.anchor.x = anchorx;
@@ -67,6 +85,7 @@ enemyObj.prototype.Explode = function()
 
 enemyObj.prototype.Fly = function(targetx,targety)
 {
+    var good = false;
     if(this.obj.position.x > targetx)
     {
         this.obj.position.x -= 1;
@@ -78,7 +97,7 @@ enemyObj.prototype.Fly = function(targetx,targety)
     }
     else
     {
-        return true;
+        good = true;
     }
     if(this.obj.position.y > targety)
     {
@@ -89,9 +108,19 @@ enemyObj.prototype.Fly = function(targetx,targety)
     }
     else
     {
-        return true;
+        good = true;
     }
-    return false;
+    
+    if(this.idle >= this.iddleAnimation.length){
+         this.idle = 0;
+    }
+         
+    this.obj.texture = this.iddleAnimation[this.idle];
+    this.idle++;
+    
+    
+    
+    return good;
     //if(this.obj.position.x >=  container.obj.width(integer))
     //{
         
