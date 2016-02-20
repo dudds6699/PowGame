@@ -44,12 +44,12 @@ GameScene.prototype.SetHandlers = function(){
     this.obj.mousedown = function (event) 
     {
         pl.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
-        //playWoosh();
+        playWoosh();
     };
     
     this.obj.tap  = function(event){
         pl.Move(event.data.global.x, event.data.global.y);
-        //playWoosh();
+        playWoosh();
     };  
 };
 
@@ -61,7 +61,7 @@ GameScene.prototype.Animate = function () {
             {
                 if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y))
                 {
-                    //playGrunt();
+                    playGrunt();
                 }
             
             }
@@ -71,7 +71,7 @@ GameScene.prototype.Animate = function () {
             if(this.player.exists === true){
                 this.player.Animate();
             }else{
-                //this.state = false;
+                this.state = false;
             }
         
             if(this.score.exists === true && (this.scoreDelay == this.maxDelay)){

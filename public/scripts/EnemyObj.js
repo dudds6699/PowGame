@@ -85,30 +85,39 @@ enemyObj.prototype.Explode = function()
 
 enemyObj.prototype.Fly = function(targetx,targety)
 {
-    var good = false;
+    var distx = 0;
+    var disty = 0;
+    
+    if(
+        (this.obj.position.x + 20 == targetx && this.obj.position.y == targety)
+        ||(this.obj.position.x == targetx + 20 && this.obj.position.y == targety)
+        || (this.obj.position.x == targetx && this.obj.position.y + 40 == targety)
+        || (this.obj.position.x == targetx && this.obj.position.y == targety + 40)
+      )
+    {
+        return true;
+    }
+    
     if(this.obj.position.x > targetx)
     {
+        distx = this.obj.position.x - targetx;
         this.obj.position.x -= 1;
         this.obj.scale.x = 1;
     }
     else if(this.obj.position.x < targetx){
+        distx = targetx - this.obj.position.x;
         this.obj.position.x += 1;
         this.obj.scale.x = -1;
     }
-    else
-    {
-        good = true;
-    }
+
     if(this.obj.position.y > targety)
     {
+        disty = this.obj.position.y - targety;
         this.obj.position.y -= 1;
     }
     else if(this.obj.position.y < targety){
+        disty = targety - this.obj.position.y;
         this.obj.position.y += 1;
-    }
-    else
-    {
-        good = true;
     }
     
     if(this.idle >= this.iddleAnimation.length){
@@ -118,11 +127,5 @@ enemyObj.prototype.Fly = function(targetx,targety)
     this.obj.texture = this.iddleAnimation[this.idle];
     this.idle++;
     
-    
-    
-    return good;
-    //if(this.obj.position.x >=  container.obj.width(integer))
-    //{
-        
-    //}
+    return distx < 20 && disty < 40;
 }
