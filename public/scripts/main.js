@@ -13,26 +13,6 @@ $(document).ready(function () {
         .load(start);
     
     
-<<<<<<< HEAD
-
-
-    var enemyimg = 'pics/Antagonist.png';
-
-    var enemy = new enemyObj(enemyimg, 0.5,0.5,400,300);
-    enemy.addSprite(container);
-    enemy.setPosition(400,300);
-
-    container.mousedown = function (event) 
-    {
-        player.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
-        playWoosh(player.soundeffectid);
-    };
-    
-    container.tap  = function(event){
-        player.Move(event.data.global.x, event.data.global.y);
-        playWoosh(player.soundeffectid);
-    };
-=======
     
     document.getElementById("game").appendChild(renderer.view); 
    
@@ -41,7 +21,6 @@ $(document).ready(function () {
         gameScene.startGame();
         animate();
     }
->>>>>>> a75098d3797709cf37b04e4f13e59a6fad2e0747
     
     function animate(){
          requestAnimationFrame( animate );
