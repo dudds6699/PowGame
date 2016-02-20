@@ -1,15 +1,6 @@
 function enemyObj(){
-    var baseTexture = new PIXI.BaseTexture.fromImage(tex);
-    this.iddleAnimation = [];
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(0, 0, 64, 64)));
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(64, 0, 64, 64)));
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(128, 0, 64, 64)));
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(192, 0, 64, 64)));
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(256, 0, 64, 64)));
-    this.idle = 0;
-    
-    
-    this.obj = new PIXI.Sprite(this.iddleAnimation[this.idle]);
+    this.texture = PIXI.Texture.fromImage('pics/enemy.png');
+    this.obj = new PIXI.Sprite(this.texture);
     
     //sprites anchor point
     this.obj.anchor.x = 0.5;
@@ -27,31 +18,25 @@ function enemyObj(){
 }
 
 function enemyObj(tex, anchorx, anchory, posx, posy){
-    var baseTexture = new PIXI.BaseTexture.fromImage(tex);
-    this.iddleAnimation = [];
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(0, 0, 64, 64)));
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(64, 0, 64, 64)));
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(128, 0, 64, 64)));
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(192, 0, 64, 64)));
-    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(256, 0, 64, 64)));
-    this.idle = 0;
-    
-    
-    this.obj = new PIXI.Sprite(this.iddleAnimation[this.idle]);
+    this.texture =  PIXI.Texture.fromImage(tex);
+    this.obj = new PIXI.Sprite(this.texture);
     
     //sprites anchor point
-    this.obj.anchor.x = 0.5;
-    this.obj.anchor.y = 0.5;
+    this.obj.anchor.x = anchorx;
+    this.obj.anchor.y = anchory;
     
     //position
-    this.obj.position.x = 200;
-    this.obj.position.y = 150;
+    this.obj.position.x = posx;
+    this.obj.position.y = posy;
     this.exists = true;
     this.movey = false;
     this.movex = false;
     this.targetx = 0;
     this.targety = 0;
-    this.v = 1;
+    this.v = 20;
+    
+    //this is a test of event handlers
+    this.obj.interactive = true;
 }
 
 enemyObj.prototype.setAnchor = function(x, y){
@@ -89,6 +74,10 @@ enemyObj.prototype.Fly = function(targetx,targety)
     else if(this.obj.position.x < targetx){
         this.obj.position.x += 1;
     }
+    else
+    {
+        return true;
+    }
     if(this.obj.position.y > targety)
     {
         this.obj.position.y -= 1;
@@ -96,17 +85,11 @@ enemyObj.prototype.Fly = function(targetx,targety)
     else if(this.obj.position.y < targety){
         this.obj.position.y += 1;
     }
-    
-    
-    if(this.idle >= this.iddleAnimation.length){
-        this.idle = 0;
+    else
+    {
+        return true;
     }
-        
-    this.obj.texture = this.iddleAnimation[this.idle];
-    this.idle++;
-        
-    
-    
+    return false;
     //if(this.obj.position.x >=  container.obj.width(integer))
     //{
         
