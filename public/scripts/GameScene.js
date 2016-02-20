@@ -15,9 +15,15 @@ function GameScene(x, y){
     
     this.heroLocation = 'pics/Hero.png';
     this.enemyimg = 'pics/Antagonist.png';
+    this.backgroundimg = 'pics/DungeonFloor800x600.png'
+    
     this.scoreDelay = 0;
     this.maxDelay = 25;
     this.score = 0;
+    
+    this.background = new gameObj(this.backgroundimg, 0,0,0,0);
+    this.background.addSprite(this.obj);
+    
     
     this.player = new playerObj(this.heroLocation, 0.5,0.5,100,100);
     this.player.addSprite(this.obj);

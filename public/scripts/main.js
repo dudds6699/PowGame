@@ -10,6 +10,8 @@ $(document).ready(function () {
     loader
         .add('pics/Hero.png')
         .add('pics/Antagonist.png')
+        .add('pics/DungeonFloor.png')
+        .add('pics/DungeonFloor800x600.png')
         .load(start);
     
     
