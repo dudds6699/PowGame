@@ -9,6 +9,7 @@ function gameObj(){
     //position
     this.obj.position.x = 200;
     this.obj.position.y = 150;
+    this.exists = true;
 }
 
 function gameObj(tex, anchorx, anchory, posx, posy){
@@ -22,7 +23,22 @@ function gameObj(tex, anchorx, anchory, posx, posy){
     //position
     this.obj.position.x = posx;
     this.obj.position.y = posy;
+    this.exists = true;
+    
+    //this is a test of event handlers
+    this.obj.interactive = true;
+    this.obj.on('mousedown', test);
 }
+
+gameObj.prototype.setAnchor = function(x, y){
+    this.obj.anchor.x = x;
+    this.obj.anchor.y = y;
+};
+
+gameObj.prototype.setPosition = function(x, y){
+    this.obj.position.x = x;
+    this.obj.position.y = y;
+};
 
 gameObj.prototype.addSprite = function(container){
     container.addChild(this.obj);
@@ -31,3 +47,7 @@ gameObj.prototype.addSprite = function(container){
 gameObj.prototype.Animate = function(){
     this.obj.rotation += 0.1;  
 };
+
+function test(){
+    this.visible = false;
+}
