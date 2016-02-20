@@ -14,31 +14,23 @@ $(document).ready(function () {
     //$('body').append(renderer.view);
     document.getElementById("game").appendChild(renderer.view); 
     
- 
-    //note this is just here for testing purposes we should really make a gaming object
-    var texture = PIXI.Texture.fromImage('pics/bunny.png');
 
-    var bunny = new PIXI.Sprite(texture);
 
-    // center the sprite's anchor point
-    bunny.anchor.x = 0.5;
-    bunny.anchor.y = 0.5;
-
-    // move the sprite to the center of the screen
-    bunny.position.x = 200;
-    bunny.position.y = 150;
-
-    container.addChild(bunny);
 
     loader
         .add("pics/bunny.png")
         .load(animate);   
+        
+        
+    var check = 'pics/bunny.png';
+    var test = new gameObj(check, 0.5,0.5,400,300);
+    test.addSprite(container);
             
     function animate() {
         requestAnimationFrame( animate );
         //state();
         // just for fun, let's rotate mr rabbit a little
-        bunny.rotation += 0.1;
+        test.Animate();
     
         renderer.render(container);
     }
