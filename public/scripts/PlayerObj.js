@@ -33,7 +33,7 @@ function playerObj(tex, anchorx, anchory, posx, posy){
     this.movex = false;
     this.targetx = 0;
     this.targety = 0;
-    this.v = 20;
+    this.v = 10;
     
     //this is a test of event handlers
     this.obj.interactive = true;
@@ -72,16 +72,12 @@ playerObj.prototype.MoveToTarget = function(){
         this.obj.position.x -= this.v;
     }else if (this.obj.position.x < this.targetx && this.movex){
         this.obj.position.x += this.v;        
-    }else{
-        this.movex = false;
     }
     
     if(this.obj.position.y < this.targety && this.movey){
         this.obj.position.y += this.v;
     }else if (this.obj.position.y > this.targety && this.movey){
         this.obj.position.y -= this.v;        
-    }else{
-        this.movey = false;
     }
     
     var checkx = this.targetx - this.obj.position.x;
