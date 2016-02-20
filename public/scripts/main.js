@@ -48,10 +48,12 @@ $(document).ready(function () {
     container.mousedown = function (event) 
     {
         player.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
+        playWoosh();
     };
     
     container.tap  = function(event){
         player.Move(event.data.global.x, event.data.global.y);
+        playWoosh();
     };
     
             
@@ -60,7 +62,10 @@ $(document).ready(function () {
         
         if(enemy.exists === true)
         {
-            enemy.Fly(player.obj.position.x, player.obj.position.y);
+            if(enemy.Fly(player.obj.position.x, player.obj.position.y))
+            {
+                playGrunt();
+            }
             
         }
         
@@ -82,5 +87,16 @@ $(document).ready(function () {
         if(state === true){
             renderer.render(container);
         }
+    }
+    
+    function playWoosh()
+    {
+        var woosh = new Audio("audio/woosh_1.mp3");
+        woosh.play();
+    }
+    function playGrunt()
+    {
+        var grunt = new Audio("audio/grunt.mp3")
+        grunt.play();
     }
 });
