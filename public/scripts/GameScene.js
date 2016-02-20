@@ -50,12 +50,12 @@ GameScene.prototype.SetHandlers = function(){
     this.obj.mousedown = function (event) 
     {
         pl.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
-        playWoosh();
+        playWoosh(pl.soundeffectid);
     };
     
     this.obj.tap  = function(event){
         pl.Move(event.data.global.x, event.data.global.y);
-        playWoosh();
+        playWoosh(pl.soundeffectid);
     };  
 };
 

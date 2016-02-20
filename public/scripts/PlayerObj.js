@@ -15,6 +15,7 @@ function playerObj(){
     this.targetx = 0;
     this.targety = 0;
     this.v = 1;
+    this.soundeffectid = 1;
 }
 
 function playerObj(tex, anchorx, anchory, posx, posy){
@@ -50,6 +51,9 @@ function playerObj(tex, anchorx, anchory, posx, posy){
     
     //this is a test of event handlers
     this.obj.interactive = true;
+    
+    //soundeffectid
+    this.soundeffectid = 1;
 }
 
 playerObj.prototype.setAnchor = function(x, y){
@@ -85,6 +89,14 @@ playerObj.prototype.Move = function(x, y){
     this.targety = y;
     this.movey = true;
     this.movex = true;
+    if(this.soundeffectid == 4)
+    {
+        this.soundeffectid = 1;
+    }
+    else
+    {
+        this.soundeffectid += 1;
+    }
 };
 
 playerObj.prototype.MoveToTarget = function(){
