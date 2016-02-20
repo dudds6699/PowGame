@@ -18,13 +18,26 @@ function playerObj(){
 }
 
 function playerObj(tex, anchorx, anchory, posx, posy){
-    this.texture =  PIXI.Texture.fromImage(tex);
-    this.obj = new PIXI.Sprite(this.texture);
+    //this.texture =  PIXI.Texture.fromImage(tex);
+    var baseTexture = new PIXI.BaseTexture.fromImage(tex);
+    this.iddleAnimation = [];
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(0, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(64, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(128, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(192, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(256, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(320, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(384, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(448, 0, 64, 64)));
+    this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(512, 0, 64, 64)));
+    
+    
+    this.obj = new PIXI.Sprite(this.iddleAnimation[0]);
     
     //sprites anchor point
     this.obj.anchor.x = anchorx;
     this.obj.anchor.y = anchory;
-    
+    this.idle = 0;
     //position
     this.obj.position.x = posx;
     this.obj.position.y = posy;
@@ -57,6 +70,13 @@ playerObj.prototype.Animate = function(){
     //this.obj.rotation += 0.1;  
     if(this.movex || this.movey){
         this.MoveToTarget();
+    }else{
+        if(this.idle >= this.iddleAnimation.length){
+            this.idle = 0;
+        }
+        
+        this.obj.texture = this.iddleAnimation[this.idle];
+        this.idle++;
     }
 };
 

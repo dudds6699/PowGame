@@ -19,25 +19,26 @@ $(document).ready(function () {
     // add the renderer view element to the DOM
     //$('body').append(renderer.view);
     document.getElementById("game").appendChild(renderer.view); 
-
-
+    
+    var heroLocation = 'pics/Hero.png';
+    
     loader
-        .add("pics/bunny.png")
+        .add(heroLocation)
         .load(animate);   
         
         
-    var check = 'pics/bunny.png';
-    var test = new playerObj(check, 0.5,0.5,100,100);
-    test.addSprite(container);
-    test.setPosition(100,500);
+    
+    var player = new playerObj(heroLocation, 0.5,0.5,100,100);
+    player.addSprite(container);
+    player.setPosition(100,500);
     
     container.mousedown = function (event) 
     {
-        test.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
+        player.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
     };
     
     container.tap  = function(event){
-        test.Move(event.data.global.x, event.data.global.y);
+        player.Move(event.data.global.x, event.data.global.y);
     };
     
             
@@ -45,8 +46,8 @@ $(document).ready(function () {
         requestAnimationFrame( animate );
         //state();
         // just for fun, let's rotate mr rabbit a little
-        if(test.exists === true){
-            test.Animate();
+        if(player.exists === true){
+            player.Animate();
         }else{
             state = false;
         }
