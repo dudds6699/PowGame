@@ -90,8 +90,10 @@ playerObj.prototype.Move = function(x, y){
 playerObj.prototype.MoveToTarget = function(){
     if(this.obj.position.x > this.targetx && this.movex){
         this.obj.position.x -= this.v;
+        this.obj.scale.x = -1;
     }else if (this.obj.position.x < this.targetx && this.movex){
         this.obj.position.x += this.v;        
+        this.obj.scale.x = 1;
     }
     
     if(this.obj.position.y < this.targety && this.movey){

@@ -85,9 +85,11 @@ enemyObj.prototype.Fly = function(targetx,targety)
     if(this.obj.position.x > targetx)
     {
         this.obj.position.x -= 1;
+        this.obj.scale.x = 1;
     }
     else if(this.obj.position.x < targetx){
         this.obj.position.x += 1;
+        this.obj.scale.x = -1;
     }
     if(this.obj.position.y > targety)
     {
