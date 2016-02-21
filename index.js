@@ -31,7 +31,7 @@ app.get('/score', function (req, res) {
     con.query('select * from scoreboard Order by Score DESC LIMIT 10;',function(err,rows){
         if(err)
         { 
-            throw err;
+           // throw err;
         }else{
             res.send(rows);    
         }
@@ -40,13 +40,12 @@ app.get('/score', function (req, res) {
 
 //handles the insertion of the scoreboard
 app.post('/newRecord', function(req, res) {
-    console.log(req.body);
     var newscore = req.body;
     
     record = { Name: newscore.Name, Score: newscore.Score};
     if (newscore.Token === secret){
         con.query('INSERT INTO scoreboard SET ?', record, function(err,res){
-            if(err) throw err;
+            //if(err) throw err;
 
             console.log('Last insert ID:', res.insertId);
         });
