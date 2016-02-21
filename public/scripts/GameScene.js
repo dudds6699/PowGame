@@ -15,7 +15,8 @@ function GameScene(x, y){
     
     this.heroLocation = 'pics/Hero.png';
     this.enemyimg = 'pics/Antagonist.png';
-    this.backgroundimg = 'pics/PixleDungeonFloor.png'
+    this.backgroundimg = 'pics/PixleDungeonFloor.png';
+    this.fireimg = 'pics/FirePit.png';
     
     this.scoreDelay = 0;
     this.maxDelay = 25;
@@ -29,12 +30,15 @@ function GameScene(x, y){
     this.player.addSprite(this.obj);
     this.player.setPosition(100,500);
     
-    this.enemy = new enemyObj(this.enemyimg, 0.6,0.6,400,300);
+    this.enemy = new enemyObj(this.enemyimg, 0.5,0.5,400,300);
     this.enemy.addSprite(this.obj);
     this.enemy.setPosition(400,300);
     
     this.score = new scoreObj(0.5,0.5, 700, 50);
     this.score.addSprite(this.obj);
+    
+    this.fire = new hazardObj(this.fireimg, 0.5,0.5);
+    this.fire.addSprite(this.obj);
     
     this.SetHandlers();
 }
@@ -87,6 +91,20 @@ GameScene.prototype.Animate = function () {
     if(this.enemy.exists === true)
     {
         if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y,(this.score.SCORE/25)+1))
+        {
+            if(!this.player.dead){
+                playGrunt();
+                this.score.exists = false;
+                this.player.dead = true;
+                this.enemy.obj.visible = false;
+            }
+        }
+    }
+    
+    if(this.fire.exists === true)
+    {
+        this.fire.Animate();
+        if(this.fire.CheckCollide(this.player.obj.position.x, this.player.obj.position.y))
         {
             if(!this.player.dead){
                 playGrunt();
