@@ -48,27 +48,33 @@ function GameOverScene(x, y, Score){
     
     
         
-    var Submitscore = new PIXI.Text("Submit Your Score",{font : '24px Arial', fill : 'white', stroke: '#000000',strokeThickness: 5});
-    Submitscore.anchor.x = 0.5;
-    Submitscore.anchor.y = 0.5;
-    Submitscore.position.x = x / 2;
-    Submitscore.position.y = PlayAgain.position.y + 50;
-    Submitscore.interactive = true;
-    this.obj.addChild(Submitscore);
+    this.Submitscore = new PIXI.Text("Submit Your Score",{font : '24px Arial', fill : 'white', stroke: '#000000',strokeThickness: 5});
+    this.Submitscore.anchor.x = 0.5;
+    this.Submitscore.anchor.y = 0.5;
+    this.Submitscore.position.x = x / 2;
+    this.Submitscore.position.y = PlayAgain.position.y + 50;
+    this.Submitscore.interactive = true;
+    this.obj.addChild(this.Submitscore);
     
-    Submitscore.mousedown = function (event) 
+    item = this;
+    
+    this.Submitscore.mousedown = function (event) 
     {
         var person = prompt("Please enter your name", "Harry Potter");
         if(person !== null && person !== ""){
             NewScore(person, item.Score, "sad;lkfja;klj;laskdjf;ljlaskdjf;laksjdf;lasdjf;lasdkjf;laskjfd");
         }
+        item.Submitscore.visible = false;
+        item.Submitscore.interactive = false;
     };
     
-    Submitscore.tap  = function(event){
+    this.Submitscore.tap  = function(event){
         var person = prompt("Please enter your name");
         if(person !== null && person !== ""){
             NewScore(person, item.Score, "sad;lkfja;klj;laskdjf;ljlaskdjf;laksjdf;lasdjf;lasdkjf;laskjfd");
         }
+        item.Submitscore.visible = false;
+        item.Submitscore.interactive = false;
     }; 
     
     
