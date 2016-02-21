@@ -16,7 +16,7 @@ function GameScene(x, y){
     this.heroLocation = 'pics/Hero.png';
     this.enemyimg = 'pics/Antagonist.png';
     this.backgroundimg = 'pics/PixleDungeonFloor.png';
-    this.fireimg = 'pics/bunny.png';
+    this.fireimg = 'pics/FirePit.png';
     
     this.scoreDelay = 0;
     this.maxDelay = 25;
@@ -39,7 +39,6 @@ function GameScene(x, y){
     
     this.fire = new hazardObj(this.fireimg, 0.5,0.5);
     this.fire.addSprite(this.obj);
-    //this.fire.setPosition(200,200);
     
     this.SetHandlers();
 }
@@ -104,6 +103,7 @@ GameScene.prototype.Animate = function () {
     
     if(this.fire.exists === true)
     {
+        this.fire.Animate();
         if(this.fire.CheckCollide(this.player.obj.position.x, this.player.obj.position.y))
         {
             if(!this.player.dead){
