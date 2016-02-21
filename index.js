@@ -6,6 +6,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var bodyParser = require("body-parser");
 var mysql = require("mysql");
+var secret = "sad;lkfja;klj;laskdjf;ljlaskdjf;laksjdf;lasdjf;lasdkjf;laskjfd";
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -27,7 +28,7 @@ server.listen(port, function () {
 
 //handles getting the scoreing
 app.get('/score', function (req, res) {
-    con.query('SELECT * FROM scoreboard',function(err,rows){
+    con.query('select * from scoreboard Order by Score DESC LIMIT 10;',function(err,rows){
         if(err)
         { 
             throw err;
@@ -41,9 +42,13 @@ app.get('/score', function (req, res) {
 app.post('/newRecord', function(req, res) {
     console.log(req.body);
     var newscore = req.body;
-    con.query('INSERT INTO scoreboard SET ?', newscore, function(err,res){
-        if(err) throw err;
+    
+    record = { Name: newscore.Name, Score: newscore.Score};
+    if (newscore.Token === secret){
+        con.query('INSERT INTO scoreboard SET ?', record, function(err,res){
+            if(err) throw err;
 
-        console.log('Last insert ID:', res.insertId);
-    });
+            console.log('Last insert ID:', res.insertId);
+        });
+    }
 });

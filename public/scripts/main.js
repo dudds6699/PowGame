@@ -6,6 +6,7 @@ $(document).ready(function () {
     var gameScene; //= new GameScene(resx, resy);
     var startScene;
     var gameOverScene;
+    var scoreBScene;
     
     renderer = PIXI.autoDetectRenderer(resx, resy,{backgroundColor : 0x1099bb});
     
@@ -22,6 +23,24 @@ $(document).ready(function () {
     
     document.getElementById("game").appendChild(renderer.view); 
     
+    function scoreBoardStart(){
+        scoreBScene = new ScoreBoardScene(resx, resy);
+        scoreBScene.startGame();
+        animateScoreBoard();
+    }
+    
+    function animateScoreBoard(){
+        if(scoreBScene.state === true){
+            requestAnimationFrame( animateScoreBoard );
+            scoreBScene.anim();
+            renderer.render(scoreBScene.obj);
+        }else{
+            startStart();
+        }
+    }
+    
+    
+    
     function startStart(){
         startScene = new StartScene(resx, resy);
         startScene.startGame();
@@ -29,11 +48,14 @@ $(document).ready(function () {
     }
     
     function animateStart(){
-        if(startScene.state === true){
+        if(startScene.state === true && startScene.showScoreBoard === false){
             requestAnimationFrame( animateStart );
             startScene.anim();
             renderer.render(startScene.obj);
-        }else{
+        }else if(startScene.showScoreBoard === true){
+            scoreBoardStart();
+        }
+        else{
             startGame();
         }
     }
