@@ -71,22 +71,6 @@ GameScene.prototype.SetHandlers = function(){
 };
 
 GameScene.prototype.Animate = function () {
-    if(this.enemy.exists === true)
-    {
-        if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y))
-        {
-                    
-            if(!this.player.dead){
-                playGrunt();
-                this.score.exists = false;
-                this.player.dead = true;
-                this.enemy.obj.visible = false;
-            }
-                    
-        }
-    }
-        
-
     if(this.player.exists === true){
         this.player.Animate();
     }else{
@@ -98,5 +82,18 @@ GameScene.prototype.Animate = function () {
         this.scoreDelay = 0;
     }else{
         this.scoreDelay++;
+    }
+    
+    if(this.enemy.exists === true)
+    {
+        if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y,(this.score.SCORE/25)+1))
+        {
+            if(!this.player.dead){
+                playGrunt();
+                this.score.exists = false;
+                this.player.dead = true;
+                this.enemy.obj.visible = false;
+            }
+        }
     }
 };
