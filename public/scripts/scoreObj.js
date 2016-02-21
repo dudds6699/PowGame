@@ -2,7 +2,7 @@
 function scoreObj(anchorx, anchory, posx, posy){
     this.SCORE = 0;
     
-    this.obj = new PIXI.Text(this.SCORE,{font : '24px Arial', fill : 0xff1010});
+    this.obj = new PIXI.Text(this.SCORE,{font : '24px Arial', fill : 'white', stroke: '#000000',strokeThickness: 5});
     
     //sprites anchor point
     this.obj.anchor.x = anchorx;
