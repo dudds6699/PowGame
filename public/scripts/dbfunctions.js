@@ -1,7 +1,7 @@
 function GetScoreBoard(){
     $.get( "score", function( data ) {
         console.log(data);
-        //return data;
+        return data;
     });
 }
 
