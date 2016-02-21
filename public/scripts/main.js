@@ -12,6 +12,7 @@ $(document).ready(function () {
         .add('pics/Antagonist.png')
         .add('pics/DungeonFloor.png')
         .add('pics/DungeonFloor800x600.png')
+        .add('pics/DeathAnimation.png')
         .load(start);
     
     

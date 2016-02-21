@@ -49,13 +49,17 @@ GameScene.prototype.SetHandlers = function(){
     
     this.obj.mousedown = function (event) 
     {
-        pl.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
-        playWoosh(pl.soundeffectid);
+        if(pl.dead === false){
+            pl.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
+            playWoosh(pl.soundeffectid);
+        }
     };
     
     this.obj.tap  = function(event){
-        pl.Move(event.data.global.x, event.data.global.y);
-        playWoosh(pl.soundeffectid);
+        if(pl.dead === false){
+            pl.Move(event.data.global.x, event.data.global.y);
+            playWoosh(pl.soundeffectid);
+        }
     };  
 };
 
@@ -67,7 +71,14 @@ GameScene.prototype.Animate = function () {
             {
                 if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y))
                 {
-                    playGrunt();
+                    
+                    if(!this.player.dead){
+                        playGrunt();
+                        this.score.exists = false;
+                        this.player.dead = true;
+                        this.enemy.obj.visible = false;
+                    }
+                    
                 }
             
             }
@@ -86,6 +97,8 @@ GameScene.prototype.Animate = function () {
             }else{
                 this.scoreDelay++;
             }
+            
+
  
         }
     };
