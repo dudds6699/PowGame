@@ -15,7 +15,7 @@ function GameScene(x, y){
     
     this.heroLocation = 'pics/Hero.png';
     this.enemyimg = 'pics/Antagonist.png';
-    this.backgroundimg = 'pics/DungeonFloor800x600.png'
+    this.backgroundimg = 'pics/PixleDungeonFloor.png'
     
     this.scoreDelay = 0;
     this.maxDelay = 25;
