@@ -83,7 +83,7 @@ enemyObj.prototype.Explode = function()
     this.visble = false;
 }
 
-enemyObj.prototype.Fly = function(targetx,targety)
+enemyObj.prototype.Fly = function(targetx,targety, speed)
 {
     var distx = 0;
     var disty = 0;
@@ -101,23 +101,23 @@ enemyObj.prototype.Fly = function(targetx,targety)
     if(this.obj.position.x > targetx)
     {
         distx = this.obj.position.x - targetx;
-        this.obj.position.x -= 1;
+        this.obj.position.x -= speed;
         this.obj.scale.x = 1;
     }
     else if(this.obj.position.x < targetx){
         distx = targetx - this.obj.position.x;
-        this.obj.position.x += 1;
+        this.obj.position.x += speed;
         this.obj.scale.x = -1;
     }
 
     if(this.obj.position.y > targety)
     {
         disty = this.obj.position.y - targety;
-        this.obj.position.y -= 1;
+        this.obj.position.y -= speed;
     }
     else if(this.obj.position.y < targety){
         disty = targety - this.obj.position.y;
-        this.obj.position.y += 1;
+        this.obj.position.y += speed;
     }
     
     if(this.idle >= this.iddleAnimation.length){
