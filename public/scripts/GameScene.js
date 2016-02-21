@@ -26,12 +26,14 @@ function GameScene(x, y){
     this.background = new gameObj(this.backgroundimg, 0,0,0,0);
     this.background.addSprite(this.obj);
     
+    
     this.fire = new hazardObj(this.fireimg, 0.5,0.5);
     this.fire.obj.scale.y = 0.5;
     this.fire.obj.scale.x = 0.5;
-    
-    
     this.fire.addSprite(this.obj);
+    
+    this.powerup = new powerupObj(this.powerupimg, 0.5,0.5);
+    this.powerup.addSprite(this.obj);
 
     this.player = new playerObj(this.heroLocation, 0.5,0.5,100,100);
     this.player.addSprite(this.obj);
@@ -45,9 +47,6 @@ function GameScene(x, y){
     this.score.addSprite(this.obj);
     
 
-    
-    this.powerup = new powerupObj(this.powerupimg, 0.5,0.5);
-    this.powerup.addSprite(this.obj);
     
     this.SetHandlers();
 }
@@ -68,7 +67,7 @@ GameScene.prototype.SetHandlers = function(){
             playWoosh(pl.soundeffectid);
         }else if(pl.deadit <= pl.DeathAnimation.length) {
             gs.state = false;
-            gs.obj.destroy();
+            //gs.obj.destroy();
         }
     };
     
@@ -78,7 +77,7 @@ GameScene.prototype.SetHandlers = function(){
             playWoosh(pl.soundeffectid);
         }else if(pl.deadit <= pl.DeathAnimation.length) {
             gs.state = false;
-            gs.obj.destroy();
+            //gs.obj.destroy();
         }
     };  
 };

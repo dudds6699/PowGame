@@ -32,7 +32,7 @@ function powerupObj(){
 function powerupObj(tex, anchorx, anchory){
     var baseTexture = new PIXI.BaseTexture.fromImage(tex);
     this.iddleAnimation = [];
-    for (var i = 0; i <=32*45; i+=32){
+    for (var i = 0; i < 32*45; i+=32){
         this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(i, 0, 32, 32)));
     }
     this.idle = 0;

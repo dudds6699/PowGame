@@ -37,13 +37,11 @@ function GameOverScene(x, y, Score){
     {
         item.obj.visible = false;
         item.state = false;
-        item.obj.destroy();
     };
     
     PlayAgain.tap  = function(event){
         item.obj.visible = false;
         item.state = false;
-        item.obj.destroy();
     };  
     
     
