@@ -17,6 +17,8 @@ $(document).ready(function () {
         .add('pics/PixleDungeonFloor.png')
         .add('pics/DeathAnimation.png')
         .add('pics/Title.png')
+        .add('pics/Grass.png')
+        .add('pics/Moss.png')
         .load(startStart);
 
     

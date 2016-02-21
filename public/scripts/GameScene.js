@@ -18,14 +18,24 @@ function GameScene(x, y){
     this.backgroundimg = 'pics/PixleDungeonFloor.png';
     this.fireimg = 'pics/FirePit.png';
     this.powerupimg = 'pics/PowerUp.png';
+    this.grastext = 'pics/Grass.png';
+    this.mossText = "pics/Moss.png";
     
+    
+    this.totalGrasses = 1000;
+    this.totalMoss = 50;
     this.scoreDelay = 0;
     this.maxDelay = 25;
     this.score = 0;
     
+    this.grasses = [];
+    this.mosses = [];
+    
     this.background = new gameObj(this.backgroundimg, 0,0,0,0);
     this.background.addSprite(this.obj);
     
+    //this.SetupMoss();
+    this.SetupGrass();
     
     this.fire = new hazardObj(this.fireimg, 0.5,0.5);
     this.fire.obj.scale.y = 0.5;
@@ -155,4 +165,44 @@ GameScene.prototype.Animate = function () {
             }
         }
     }
+    
+    if(this.grasses.length > 0){
+        var total = this.grasses.length;
+        for(var i = 0; i < total; i ++){
+            this.grasses[i].Animate();
+        }
+    }
+    
+};
+
+GameScene.prototype.SetupGrass = function(){
+  for(var i = 0; i < this.totalGrasses; i++){
+      //randomly generate an x y posidion
+      var grass =  new GrassObj(
+          this.grastext, 
+          0.5,
+          0.5,
+          Math.floor((Math.random() * this.maxX)),
+          Math.floor((Math.random() * this.maxY))
+        );
+        grass.addSprite(this.obj);
+        this.grasses.push(grass);
+  }
+};
+
+GameScene.prototype.SetupMoss= function(){
+  for(var i = 0; i < this.totalMoss; i++){
+      //randomly generate an x y posidion
+      var moss =  new gameObj(
+          this.mossText, 
+          0.5,
+          0.5,
+          Math.floor((Math.random() * this.maxX)),
+          Math.floor((Math.random() * this.maxY))
+        );
+        moss.obj.scale.x = 0.3;
+        moss.obj.scale.y = 0.3;
+        moss.addSprite(this.obj);
+        this.mosses.push(moss);
+  }
 };
