@@ -13,11 +13,16 @@ function StartScene(x, y){
     // add the renderer view element to the DOM
     //$('body').append(renderer.view);
     this.backgroundimg = 'pics/PixleDungeonFloor.png';
+    this.titleimg = 'pics/Title.png';
     
     this.background = new gameObj(this.backgroundimg, 0,0,0,0);
     this.background.addSprite(this.obj);
+    
+    this.titlescreen = new gameObj(this.titleimg, 0,0,0,0);
+    this.titlescreen.addSprite(this.obj);
+    
     var insText = new PIXI.Text(
-            "Click to move, click to start don't let the orger get you!",
+            "Click to move, don't let the orger get you!",
             {
                 font : '24px Arial',
                 fill : 'red', 
@@ -43,7 +48,7 @@ function StartScene(x, y){
     scoreBoardText.anchor.x = 0.5;
     scoreBoardText.anchor.y = 0.5;
     scoreBoardText.position.x = insText.position.x;
-    scoreBoardText.position.y = insText.position.y + 200;
+    scoreBoardText.position.y = insText.position.y + 25 ;
     scoreBoardText.interactive = true;
     
     var sc = this;
@@ -70,7 +75,7 @@ function StartScene(x, y){
     startGameText.anchor.x = 0.5;
     startGameText.anchor.y = 0.5;
     startGameText.position.x = insText.position.x;
-    startGameText.position.y = insText.position.y + 100;
+    startGameText.position.y = scoreBoardText.position.y + 25;
     startGameText.interactive = true;
     
     startGameText.mousedown = function (event) {

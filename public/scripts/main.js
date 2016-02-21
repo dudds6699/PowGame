@@ -16,6 +16,7 @@ $(document).ready(function () {
         .add('pics/DungeonFloor.png')
         .add('pics/PixleDungeonFloor.png')
         .add('pics/DeathAnimation.png')
+        .add('pics/Title.png')
         .load(startStart);
 
     
@@ -77,7 +78,7 @@ $(document).ready(function () {
     }
     
     function gameOver(){
-        gameOverScene = new GameOverScene(resx, resy);
+        gameOverScene = new GameOverScene(resx, resy, gameScene.score.SCORE);
         gameOverScene.startGame();
         animateGameOver();
     }

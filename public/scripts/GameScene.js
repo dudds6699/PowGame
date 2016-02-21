@@ -26,7 +26,13 @@ function GameScene(x, y){
     this.background = new gameObj(this.backgroundimg, 0,0,0,0);
     this.background.addSprite(this.obj);
     
+    this.fire = new hazardObj(this.fireimg, 0.5,0.5);
+    this.fire.obj.scale.y = 0.5;
+    this.fire.obj.scale.x = 0.5;
     
+    
+    this.fire.addSprite(this.obj);
+
     this.player = new playerObj(this.heroLocation, 0.5,0.5,100,100);
     this.player.addSprite(this.obj);
     this.player.setPosition(100,500);
@@ -38,8 +44,7 @@ function GameScene(x, y){
     this.score = new scoreObj(0.5,0.5, 700, 50);
     this.score.addSprite(this.obj);
     
-    this.fire = new hazardObj(this.fireimg, 0.5,0.5);
-    this.fire.addSprite(this.obj);
+
     
     this.powerup = new powerupObj(this.powerupimg, 0.5,0.5);
     this.powerup.addSprite(this.obj);

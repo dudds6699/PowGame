@@ -1,8 +1,9 @@
 
-function GameOverScene(x, y){
+function GameOverScene(x, y, Score){
     this.state = false;
     this.maxX = x;
     this.maxY = y;
+    this.Score = Score;
     
     this.obj =  new PIXI.Container();
     this.obj.interactive = true;
@@ -22,6 +23,62 @@ function GameOverScene(x, y){
     text.position.y = y / 2;
     this.obj.addChild(text);
     
+    var PlayAgain = new PIXI.Text("Back to Start Screen",{font : '24px Arial', fill : 'white', stroke: '#000000',strokeThickness: 5});
+    PlayAgain.anchor.x = 0.5;
+    PlayAgain.anchor.y = 0.5;
+    PlayAgain.position.x = x / 2;
+    PlayAgain.position.y = text.position.y + 50;
+    PlayAgain.interactive = true;
+    this.obj.addChild(PlayAgain);
+    
+    var item = this;
+    
+    PlayAgain.mousedown = function (event) 
+    {
+        item.obj.visible = false;
+        item.state = false;
+        item.obj.destroy();
+    };
+    
+    PlayAgain.tap  = function(event){
+        item.obj.visible = false;
+        item.state = false;
+        item.obj.destroy();
+    };  
+    
+    
+        
+    this.Submitscore = new PIXI.Text("Submit Your Score",{font : '24px Arial', fill : 'white', stroke: '#000000',strokeThickness: 5});
+    this.Submitscore.anchor.x = 0.5;
+    this.Submitscore.anchor.y = 0.5;
+    this.Submitscore.position.x = x / 2;
+    this.Submitscore.position.y = PlayAgain.position.y + 50;
+    this.Submitscore.interactive = true;
+    this.obj.addChild(this.Submitscore);
+    
+    item = this;
+    
+    this.Submitscore.mousedown = function (event) 
+    {
+        var person = prompt("Please enter your name", "Harry Potter");
+        if(person !== null && person !== ""){
+            NewScore(person, item.Score, "sad;lkfja;klj;laskdjf;ljlaskdjf;laksjdf;lasdjf;lasdkjf;laskjfd");
+        }
+        item.Submitscore.visible = false;
+        item.Submitscore.interactive = false;
+    };
+    
+    this.Submitscore.tap  = function(event){
+        var person = prompt("Please enter your name");
+        if(person !== null && person !== ""){
+            NewScore(person, item.Score, "sad;lkfja;klj;laskdjf;ljlaskdjf;laksjdf;lasdjf;lasdkjf;laskjfd");
+        }
+        item.Submitscore.visible = false;
+        item.Submitscore.interactive = false;
+    }; 
+    
+    
+    
     
     this.SetHandlers();
 }
@@ -34,18 +91,7 @@ GameOverScene.prototype.startGame = function(){
 GameOverScene.prototype.SetHandlers = function(){
     var item = this;
     
-    this.obj.mousedown = function (event) 
-    {
-        item.obj.visible = false;
-        item.state = false;
-        item.obj.destroy();
-    };
-    
-    this.obj.tap  = function(event){
-        item.obj.visible = false;
-        item.state = false;
-        item.obj.destroy();
-    };  
+
 };
 
 GameOverScene.prototype.anim = function(){
