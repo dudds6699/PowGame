@@ -24,6 +24,7 @@ function enemyObj(){
     this.targetx = 0;
     this.targety = 0;
     this.v = 1;
+    this.speed = 1;
 }
 
 function enemyObj(tex, anchorx, anchory, posx, posy){
@@ -52,6 +53,7 @@ function enemyObj(tex, anchorx, anchory, posx, posy){
     this.targetx = 0;
     this.targety = 0;
     this.v = 20;
+    this.speed = 1;
     
     //this is a test of event handlers
     this.obj.interactive = true;
@@ -83,7 +85,7 @@ enemyObj.prototype.Explode = function()
     this.visble = false;
 }
 
-enemyObj.prototype.Fly = function(targetx,targety, speed)
+enemyObj.prototype.Fly = function(targetx,targety)
 {
     var distx = 0;
     var disty = 0;
@@ -101,23 +103,23 @@ enemyObj.prototype.Fly = function(targetx,targety, speed)
     if(this.obj.position.x > targetx)
     {
         distx = this.obj.position.x - targetx;
-        this.obj.position.x -= speed;
+        this.obj.position.x -= this.speed;
         this.obj.scale.x = 1;
     }
     else if(this.obj.position.x < targetx){
         distx = targetx - this.obj.position.x;
-        this.obj.position.x += speed;
+        this.obj.position.x += this.speed;
         this.obj.scale.x = -1;
     }
 
     if(this.obj.position.y > targety)
     {
         disty = this.obj.position.y - targety;
-        this.obj.position.y -= speed;
+        this.obj.position.y -= this.speed;
     }
     else if(this.obj.position.y < targety){
         disty = targety - this.obj.position.y;
-        this.obj.position.y += speed;
+        this.obj.position.y += this.speed;
     }
     
     if(this.idle >= this.iddleAnimation.length){

@@ -17,6 +17,7 @@ function GameScene(x, y){
     this.enemyimg = 'pics/Antagonist.png';
     this.backgroundimg = 'pics/PixleDungeonFloor.png';
     this.fireimg = 'pics/FirePit.png';
+    this.powerupimg = 'pics/PowerUp.png';
     
     this.scoreDelay = 0;
     this.maxDelay = 25;
@@ -39,6 +40,9 @@ function GameScene(x, y){
     
     this.fire = new hazardObj(this.fireimg, 0.5,0.5);
     this.fire.addSprite(this.obj);
+    
+    this.powerup = new powerupObj(this.powerupimg, 0.5,0.5);
+    this.powerup.addSprite(this.obj);
     
     this.SetHandlers();
 }
@@ -90,7 +94,8 @@ GameScene.prototype.Animate = function () {
     
     if(this.enemy.exists === true)
     {
-        if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y,(this.score.SCORE/25)+1))
+        this.enemy.speed = (this.score.SCORE/(20+(this.powerup.hits*5)))+1;
+        if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y))
         {
             if(!this.player.dead){
                 playGrunt();
@@ -111,6 +116,38 @@ GameScene.prototype.Animate = function () {
                 this.score.exists = false;
                 this.player.dead = true;
                 this.enemy.obj.visible = false;
+            }
+        }
+    }
+    if(this.powerup.exists === true)
+    {
+        this.powerup.Animate();
+        if(this.powerup.obj.visible === true)
+        {
+            if(this.powerup.CheckCollide(this.player.obj.position.x, this.player.obj.position.y))
+            {
+                playPop(this.powerup.soundeffectid);
+                this.powerup.obj.visible = false;
+                this.powerup.hits++;
+            }
+        }
+        else
+        {
+            if(this.powerup.delay === 0)
+            {
+                this.powerup.Respawn(this.fire.obj.position.x,this.fire.obj.position.y);
+                playBeep();
+            }
+            else
+            {
+                if(this.score.SCORE < 50)
+                {
+                    this.powerup.delay--;
+                }
+                else
+                {
+                    this.powerup.delay-=2;
+                }
             }
         }
     }
