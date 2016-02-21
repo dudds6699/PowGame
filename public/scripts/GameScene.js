@@ -26,7 +26,6 @@ function GameScene(x, y){
     this.background = new gameObj(this.backgroundimg, 0,0,0,0);
     this.background.addSprite(this.obj);
     
-    
     this.fire = new hazardObj(this.fireimg, 0.5,0.5);
     this.fire.obj.scale.y = 0.5;
     this.fire.obj.scale.x = 0.5;
@@ -46,7 +45,11 @@ function GameScene(x, y){
     this.score = new scoreObj(0.5,0.5, 700, 50);
     this.score.addSprite(this.obj);
     
-
+    this.bgmusic = new Audio('audio/GameSound2.wav');
+    this.bgmusic.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
     
     this.SetHandlers();
 }
@@ -54,6 +57,7 @@ function GameScene(x, y){
 GameScene.prototype.startGame = function() {
     this.state = true;
     this.obj.visible = true;
+    this.bgmusic.play();
 };
 
 GameScene.prototype.SetHandlers = function(){
@@ -106,6 +110,7 @@ GameScene.prototype.Animate = function () {
                 this.score.exists = false;
                 this.player.dead = true;
                 this.enemy.obj.visible = false;
+                this.bgmusic.pause();
             }
         }
     }
@@ -120,6 +125,7 @@ GameScene.prototype.Animate = function () {
                 this.score.exists = false;
                 this.player.dead = true;
                 this.enemy.obj.visible = false;
+                this.bgmusic.pause();
             }
         }
     }
