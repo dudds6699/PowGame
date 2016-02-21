@@ -1,5 +1,5 @@
 
-function StartScene(x, y){
+function GameOverScene(x, y){
     this.state = false;
     this.maxX = x;
     this.maxY = y;
@@ -15,7 +15,7 @@ function StartScene(x, y){
     
     this.background = new gameObj(this.backgroundimg, 0,0,0,0);
     this.background.addSprite(this.obj);
-    var text = new PIXI.Text("Click to move, click to start don't let the orger get you!",{font : '24px Arial', fill : 'red', stroke: '#000000',strokeThickness: 5});
+    var text = new PIXI.Text("Game Over",{font : '24px Arial', fill : 'red', stroke: '#000000',strokeThickness: 5});
     text.anchor.x = 0.5;
     text.anchor.y = 0.5;
     text.position.x = x / 2;
@@ -23,16 +23,15 @@ function StartScene(x, y){
     this.obj.addChild(text);
     
     
-    
     this.SetHandlers();
 }
 
-StartScene.prototype.startGame = function(){
+GameOverScene.prototype.startGame = function(){
     this.state = true;
     this.obj.visible = true;
 };
 
-StartScene.prototype.SetHandlers = function(){
+GameOverScene.prototype.SetHandlers = function(){
     var item = this;
     
     this.obj.mousedown = function (event) 
@@ -49,7 +48,6 @@ StartScene.prototype.SetHandlers = function(){
     };  
 };
 
-StartScene.prototype.anim = function(){
+GameOverScene.prototype.anim = function(){
     return true;
 };
-

@@ -45,60 +45,58 @@ GameScene.prototype.startGame = function() {
 };
 
 GameScene.prototype.SetHandlers = function(){
-    var pl = this.player;  
+    var pl = this.player;
+    var gs = this;
     
     this.obj.mousedown = function (event) 
     {
         if(pl.dead === false){
             pl.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
             playWoosh(pl.soundeffectid);
+        }else if(pl.deadit <= pl.DeathAnimation.length) {
+            gs.state = false;
+            gs.obj.destroy();
         }
     };
     
     this.obj.tap  = function(event){
         if(pl.dead === false){
-            pl.Move(event.data.global.x, event.data.global.y);
+            pl.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
             playWoosh(pl.soundeffectid);
+        }else if(pl.deadit <= pl.DeathAnimation.length) {
+            gs.state = false;
+            gs.obj.destroy();
         }
     };  
 };
 
 GameScene.prototype.Animate = function () {
-       
-        if(this.state === true){
-            
-            if(this.enemy.exists === true)
-            {
-                if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y))
-                {
+    if(this.enemy.exists === true)
+    {
+        if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y))
+        {
                     
-                    if(!this.player.dead){
-                        playGrunt();
-                        this.score.exists = false;
-                        this.player.dead = true;
-                        this.enemy.obj.visible = false;
-                    }
+            if(!this.player.dead){
+                playGrunt();
+                this.score.exists = false;
+                this.player.dead = true;
+                this.enemy.obj.visible = false;
+            }
                     
-                }
-            
-            }
-        
-        //state();
-        // just for fun, let's rotate mr rabbit a little
-            if(this.player.exists === true){
-                this.player.Animate();
-            }else{
-                this.state = false;
-            }
-        
-            if(this.score.exists === true && (this.scoreDelay == this.maxDelay)){
-                this.score.Animate();
-                this.scoreDelay = 0;
-            }else{
-                this.scoreDelay++;
-            }
-            
-
- 
         }
-    };
+    }
+        
+
+    if(this.player.exists === true){
+        this.player.Animate();
+    }else{
+        this.state = false;
+    }
+        
+    if(this.score.exists === true && (this.scoreDelay == this.maxDelay)){
+        this.score.Animate();
+        this.scoreDelay = 0;
+    }else{
+        this.scoreDelay++;
+    }
+};

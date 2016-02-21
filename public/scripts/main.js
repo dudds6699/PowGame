@@ -5,6 +5,7 @@ $(document).ready(function () {
     var loader = PIXI.loader;
     var gameScene; //= new GameScene(resx, resy);
     var startScene;
+    var gameOverScene;
     
     renderer = PIXI.autoDetectRenderer(resx, resy,{backgroundColor : 0x1099bb});
     
@@ -44,8 +45,29 @@ $(document).ready(function () {
     }
     
     function animateGame(){
-         requestAnimationFrame( animateGame );
-         gameScene.Animate();
-         renderer.render(gameScene.obj);
+        if(gameScene.state === true){
+            requestAnimationFrame( animateGame );
+            gameScene.Animate();
+            renderer.render(gameScene.obj);
+        }else{
+            gameOver();
+        }
     }
+    
+    function gameOver(){
+        gameOverScene = new GameOverScene(resx, resy);
+        gameOverScene.startGame();
+        animateGameOver();
+    }
+    
+    function animateGameOver(){
+        if(gameOverScene.state === true){
+            requestAnimationFrame( animateGameOver );
+            gameOverScene.anim();
+            renderer.render(gameOverScene.obj);
+        }else{
+            startStart();
+        }
+    }
+    
 });
