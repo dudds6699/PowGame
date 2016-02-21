@@ -83,7 +83,7 @@ enemyObj.prototype.Explode = function()
     this.visble = false;
 }
 
-enemyObj.prototype.Fly = function(targetx,targety)
+enemyObj.prototype.Fly = function(targetx,targety, speed)
 {
     var distx = 0;
     var disty = 0;

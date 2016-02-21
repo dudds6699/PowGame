@@ -59,11 +59,10 @@ GameScene.prototype.Animate = function () {
             
             if(this.enemy.exists === true)
             {
-                if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y))
+                if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y,this.score))
                 {
                     playGrunt();
                 }
-            
             }
         
         //state();
