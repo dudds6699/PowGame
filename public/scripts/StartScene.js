@@ -15,7 +15,12 @@ function StartScene(x, y){
     
     this.background = new gameObj(this.backgroundimg, 0,0,0,0);
     this.background.addSprite(this.obj);
-    
+    var text = new PIXI.Text("Click to move, click to start don't let the orger get you!",{font : '24px Arial', fill : 'red', stroke: '#000000',strokeThickness: 5});
+    text.anchor.x = 0.5;
+    text.anchor.y = 0.5;
+    text.position.x = x / 2;
+    text.position.y = y / 2;
+    this.obj.addChild(text);
     
     
     
