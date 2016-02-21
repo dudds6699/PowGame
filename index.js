@@ -24,6 +24,8 @@ server.listen(port, function () {
   console.log('Server listening at port %d', port);
 });
 
+
+//handles getting the scoreing
 app.get('/score', function (req, res) {
     con.query('SELECT * FROM scoreboard',function(err,rows){
         if(err)
@@ -32,5 +34,16 @@ app.get('/score', function (req, res) {
         }else{
             res.send(rows);    
         }
+    });
+});
+
+//handles the insertion of the scoreboard
+app.post('/newRecord', function(req, res) {
+    console.log(req.body);
+    var newscore = req.body;
+    con.query('INSERT INTO scoreboard SET ?', newscore, function(err,res){
+        if(err) throw err;
+
+        console.log('Last insert ID:', res.insertId);
     });
 });
