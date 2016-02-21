@@ -16,6 +16,8 @@ function playerObj(){
     this.targety = 0;
     this.v = 1;
     this.soundeffectid = 1;
+    this.dead = false;
+    this.deadit = 0;
 }
 
 function playerObj(tex, anchorx, anchory, posx, posy){
@@ -31,6 +33,53 @@ function playerObj(tex, anchorx, anchory, posx, posy){
     this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(384, 0, 64, 64)));
     this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(448, 0, 64, 64)));
     this.iddleAnimation.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(512, 0, 64, 64)));
+    
+    var baseDeathtex = new PIXI.BaseTexture.fromImage('pics/DeathAnimation.png');
+    this.DeathAnimation = [];
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(0, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(64, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(128, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(192, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(256, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(320, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(384, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(448, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(512, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(576, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(640, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(704, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(768, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(832, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(896, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(960, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1024, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1088, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1152, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1216, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1280, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1344, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1408, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1472, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1536, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1600, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1664, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1728, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1792, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1856, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1920, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(1984, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(2048, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(2112, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(2176, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(2240, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(2304, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(2368, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(2432, 0, 64, 64)));
+    this.DeathAnimation.push(new PIXI.Texture(baseDeathtex, new PIXI.Rectangle(2496, 0, 64, 64)));
+
+
+
+
     
     
     this.obj = new PIXI.Sprite(this.iddleAnimation[0]);
@@ -54,6 +103,8 @@ function playerObj(tex, anchorx, anchory, posx, posy){
     
     //soundeffectid
     this.soundeffectid = 1;
+    this.dead = false;
+    this.deadit = 0;
 }
 
 playerObj.prototype.setAnchor = function(x, y){
@@ -74,7 +125,13 @@ playerObj.prototype.Animate = function(){
     //this.obj.rotation += 0.1;  
     if(this.movex || this.movey){
         this.MoveToTarget();
-    }else{
+    }else if(this.dead)
+    {
+        if(this.deadit < this.DeathAnimation.length){
+            this.obj.texture = this.DeathAnimation[this.deadit];
+            this.deadit ++;
+        }
+    }else if (this.dead === false){
         if(this.idle >= this.iddleAnimation.length){
             this.idle = 0;
         }

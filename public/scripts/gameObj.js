@@ -26,8 +26,6 @@ function gameObj(tex, anchorx, anchory, posx, posy){
     this.exists = true;
     
     //this is a test of event handlers
-    this.obj.interactive = true;
-    this.obj.on('mousedown', test);
 }
 
 gameObj.prototype.setAnchor = function(x, y){
@@ -47,9 +45,3 @@ gameObj.prototype.addSprite = function(container){
 gameObj.prototype.Animate = function(){
     this.obj.rotation += 0.1;  
 };
-
-function test(){
-    var snd = new Audio("audio/explosion.mp3"); // buffers automatically when created
-	snd.play();
-    this.visible = false;
-}

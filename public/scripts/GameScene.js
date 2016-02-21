@@ -15,9 +15,15 @@ function GameScene(x, y){
     
     this.heroLocation = 'pics/Hero.png';
     this.enemyimg = 'pics/Antagonist.png';
+    this.backgroundimg = 'pics/PixleDungeonFloor.png'
+    
     this.scoreDelay = 0;
     this.maxDelay = 25;
     this.score = 0;
+    
+    this.background = new gameObj(this.backgroundimg, 0,0,0,0);
+    this.background.addSprite(this.obj);
+    
     
     this.player = new playerObj(this.heroLocation, 0.5,0.5,100,100);
     this.player.addSprite(this.obj);
@@ -43,13 +49,17 @@ GameScene.prototype.SetHandlers = function(){
     
     this.obj.mousedown = function (event) 
     {
-        pl.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
-        playWoosh(pl.soundeffectid);
+        if(pl.dead === false){
+            pl.Move(event.data.originalEvent.clientX, event.data.originalEvent.clientY);
+            playWoosh(pl.soundeffectid);
+        }
     };
     
     this.obj.tap  = function(event){
-        pl.Move(event.data.global.x, event.data.global.y);
-        playWoosh(pl.soundeffectid);
+        if(pl.dead === false){
+            pl.Move(event.data.global.x, event.data.global.y);
+            playWoosh(pl.soundeffectid);
+        }
     };  
 };
 
@@ -59,10 +69,18 @@ GameScene.prototype.Animate = function () {
             
             if(this.enemy.exists === true)
             {
-                if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y,this.score))
+                if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y))
                 {
-                    playGrunt();
+                    
+                    if(!this.player.dead){
+                        playGrunt();
+                        this.score.exists = false;
+                        this.player.dead = true;
+                        this.enemy.obj.visible = false;
+                    }
+                    
                 }
+            
             }
         
         //state();
@@ -79,6 +97,8 @@ GameScene.prototype.Animate = function () {
             }else{
                 this.scoreDelay++;
             }
+            
+
  
         }
     };
