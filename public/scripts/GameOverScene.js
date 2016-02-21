@@ -58,7 +58,7 @@ function GameOverScene(x, y, Score){
     
     this.Submitscore.mousedown = function (event) 
     {
-        var person = prompt("Please enter your name", "Harry Potter");
+        var person = prompt("Please enter your name");
         if(person !== null && person !== ""){
             NewScore(person, item.Score, "sad;lkfja;klj;laskdjf;ljlaskdjf;laksjdf;lasdjf;lasdkjf;laskjfd");
         }
