@@ -1,6 +1,6 @@
 create database powgamedb;
 create user 'gameuser'@'localhost' identified by 'password';
-grant all on powgamedb.* to 'powgamedb';
+grant all on powgamedb.* to 'gameuser';
 
 CREATE TABLE `powgamedb`.`scoreboard` (
   `ID` INT NOT NULL AUTO_INCREMENT,
