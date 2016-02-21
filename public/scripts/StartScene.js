@@ -31,11 +31,13 @@ StartScene.prototype.SetHandlers = function(){
     {
         item.obj.visible = false;
         item.state = false;
+        item.obj.destroy();
     };
     
     this.obj.tap  = function(event){
         item.obj.visible = false;
         item.state = false;
+        item.obj.destroy();
     };  
 };
 

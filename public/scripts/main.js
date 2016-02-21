@@ -43,8 +43,12 @@ $(document).ready(function () {
     }
     
     function animateGame(){
-         requestAnimationFrame( animateGame );
-         gameScene.Animate();
-         renderer.render(gameScene.obj);
+        if(gameScene.state === true){
+            requestAnimationFrame( animateGame );
+            gameScene.Animate();
+            renderer.render(gameScene.obj);
+        }else{
+            startStart();
+        }
     }
 });
