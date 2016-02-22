@@ -22,7 +22,7 @@ function StartScene(x, y){
     this.titlescreen.addSprite(this.obj);
     
     var insText = new PIXI.Text(
-            "Click to move, don't let the orgre get you!",
+            "Click to move, don't let the ogre get you!",
             {
                 font : '24px Arial',
                 fill : 'red', 
