@@ -11,16 +11,16 @@ making. This is our first attempt.
 We like long walks on the beach, unless seaweed touches our legs, then we gag like a cat hacking up a hairball. It's quite disturbing really!
 
 #Tools Used
--Koding.com
--MySql
--Pixi.js
--Jquery
--Bootstrap
--NodeJS
--http://www.audiosauna.com/ - music
--http://www.piskelapp.com/ - picutes
--Gimp
--http://www.freesfx.co.uk/ - sounds
+*Koding.com
+*MySql
+*Pixi.js
+*Jquery
+*Bootstrap
+*NodeJS
+*http://www.audiosauna.com/ - music
+*http://www.piskelapp.com/ - picutes
+*Gimp
+*http://www.freesfx.co.uk/ - sounds
 
 #Info
   In the DatabaseScripts file is a MySQL script you need to run to store high scores
