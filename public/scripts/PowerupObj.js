@@ -111,7 +111,7 @@ powerupObj.prototype.CheckCollide = function(targetx,targety){
         disty = targety - this.obj.position.y;
     }
     
-    if(distx < 20 && disty < 20)
+    if(distx < 25 && disty < 25)
     {
         if(this.soundeffectid == 2)
         {
