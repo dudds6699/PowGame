@@ -5,10 +5,12 @@ a game for the koding.com hackathon bad by the Team Big Rock is best Rock
 solanthas, dudds6699, and cenceia
 
 # About Us
-We are a team of developers from Sault Ste. Marie, Ontario. We all graduated from varying computer programs at Sault College and now have 
-all found ourselves working for a company called RBB Innovations. We are all avid gamers and want to test our toes in the waters of game
-making. This is our first attempt.
-We like long walks on the beach, unless seaweed touches our legs, then we gag like a cat hacking up a hairball. It's quite disturbing really!
+
+dudds6969 worked on game logic and initial design of the game as well as the server side component in node js.
+    
+cenecia worked on game logic, trying to make a renderer act as a game engine as well as sound effects.
+    
+solanthas worked on graphics, animation, colour scheme, and music.
 
 #Tools Used
 * Koding.com
