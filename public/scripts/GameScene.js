@@ -114,7 +114,8 @@ GameScene.prototype.Animate = function () {
     
     if(this.enemy.exists === true)
     {
-        this.enemy.speed = (this.score.SCORE/(20+(this.powerup.hits*5)))+1;
+        this.enemy.v = this.score.SCORE > 100 ? this.score.SCORE > 200 ? 10 : 15 : 20;
+        this.enemy.speed = (this.score.SCORE/(this.enemy.v+(this.powerup.hits*5)))+2;
         if(this.enemy.Fly(this.player.obj.position.x, this.player.obj.position.y))
         {
             if(!this.player.dead){
@@ -162,7 +163,7 @@ GameScene.prototype.Animate = function () {
             }
             else
             {
-                if(this.score.SCORE < 50)
+                if(this.score.SCORE < 100)
                 {
                     this.powerup.delay--;
                 }
