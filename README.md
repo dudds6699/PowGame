@@ -11,6 +11,9 @@ Pixi.js
 Jquery
 Bootstrap
 NodeJS
+http://www.audiosauna.com/
+http://www.piskelapp.com/
+Gimp
 
 #Info
   In the DatabaseScripts file is a MySQL script you need to run to store high scores
