@@ -1,4 +1,4 @@
-# Dungeion Fungeion
+# Dungeon Fungeon
 a game for the koding.com hackathon bad by the Team Big Rock is best Rock
 
 # Koding User Names
