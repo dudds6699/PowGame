@@ -13,15 +13,16 @@ cenecia worked on game logic, trying to make a renderer act as a game engine as 
 solanthas worked on graphics, animation, colour scheme, and music.
 
 #Tools Used
-Koding.com
-MySql
-Pixi.js
-Jquery
-Bootstrap
-NodeJS
-http://www.audiosauna.com/
-http://www.piskelapp.com/
-Gimp
+* Koding.com
+* MySql
+* Pixi.js
+* Jquery
+* Bootstrap
+* NodeJS
+* http://www.audiosauna.com/ - music
+* http://www.piskelapp.com/ - picutes
+* Gimp
+* http://www.freesfx.co.uk/ - sounds
 
 #Info
   In the DatabaseScripts file is a MySQL script you need to run to store high scores
